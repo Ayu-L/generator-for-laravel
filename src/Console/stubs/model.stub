@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+
+class {{ class }} extends Model
+{
+    public function scopeSearch($query, $search)
+    {
+        if (isset($search['order_key']) && ! empty($search['order_key'])) {
+            $query->orderBy($search['order_key'], 'desc');
+        }
+        return $query;
+    }
+
+    //
+}

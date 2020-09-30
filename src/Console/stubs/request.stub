@@ -1,0 +1,30 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }} extends ValidatorRequest
+{
+    protected function setRules()
+    {
+        $this->rules = [
+            'page' => 'required|integer',
+            'pageSize' => 'nullable|integer',
+        ];
+    }
+
+    protected function setRulesGroup()
+    {
+        $this->rulesGroup = [
+            '{{ variableName }}.index' => ['page', 'pageSize'],
+            '{{ variableName }}.store' => [],
+            '{{ variableName }}.update' => [],
+        ];
+    }
+
+    public function rules()
+    {
+        $this->setRules();
+        $this->setRulesGroup();
+        return parent::outputRules();
+    }
+}

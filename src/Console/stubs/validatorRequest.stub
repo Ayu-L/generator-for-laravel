@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+abstract class ValidatorRequest extends FormRequest
+{
+    /**
+     * 规则数组
+     * @var array
+     */
+    protected $rules = [];
+
+    /**
+     * 规则分组数组
+     * [
+     *      'routeName' => ['rulesName', ......]
+     * ]
+     * @var array
+     */
+    protected $rulesGroup = [];
+
+    /**
+     * 是否验证
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * 输出处理好的规则数据
+     * @return array
+     */
+    protected function outputRules()
+    {
+        $routeName = $this->route()->getName();
+        if (isset($this->rulesGroup[$routeName])) {
+
+            foreach ($this->rulesGroup[$routeName] as $key => $value) {
+                if (is_numeric($key)) {
+                    if (isset($this->rules[$value])) {
+                        $rules[$value] = $this->rules[$value];
+                    }
+                } else {
+                    if (isset($this->rules[$key])) {
+                        $rules[$key] = $value;
+                    }
+                }
+            }
+        }
+
+        if (isset($rules)) {
+            return $rules;
+        } else {
+            return $this->rules;
+        }
+    }
+
+    /**
+     * 子类设定$this->rules
+     * @return mixed
+     */
+    abstract protected function setRules();
+
+    /**
+     * 子类设定$this->rulesGroup
+     * @return mixed
+     */
+    abstract protected function setRulesGroup();
+
+    /**
+     * $this->setRules();
+     * $this->setRulesGroup();
+     * return parent::outputRules();
+     * @return mixed
+     */
+    abstract protected function rules();
+}

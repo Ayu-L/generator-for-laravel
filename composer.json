@@ -1,0 +1,16 @@
+{
+    "name": "ayu/generator",
+    "description": "ayu使用的代码生成器",
+    "authors": [
+        {
+            "name": "林玄宇",
+            "email": "190971772@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ayu\\Generator\\": "src/"
+        }
+    }
+}

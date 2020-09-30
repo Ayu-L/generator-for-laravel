@@ -1,0 +1,87 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Services\{{ useName }}Service;
+use App\Http\Requests\{{ useName }}Request;
+
+class {{ class }} extends Controller
+{
+    protected ${{ variableName }}Service;
+
+    public function __construct({{ useName }}Service ${{ variableName }}Service)
+    {
+        $this->{{ variableName }}Service = ${{ variableName }}Service;
+    }
+
+    public function index({{ useName }}Request $request)
+    {
+        $search = [];
+
+        $pageSize = $request->get('pageSize', 20);
+
+        $search['order_key'] = $request->get('order_key', 'id');
+
+        try {
+            ${{ variableName }} = $this->{{ variableName }}Service->get{{ useName }}UsingSearch($search, $pageSize);
+
+            return $this->success('success', ${{ variableName }});
+
+        } catch (\Exception $exception) {
+
+            return $this->error($exception->getMessage());
+        }
+    }
+
+    public function store({{ useName }}Request $request)
+    {
+        ${{ variableName }} = $request->only([
+
+        ]);
+
+        try {
+            $this->{{ variableName }}Service->create{{ useName }}(${{ variableName }});
+
+            return $this->success('创建成功');
+
+        } catch (\Exception $exception) {
+
+            return $this->error($exception->getMessage());
+        }
+    }
+
+    public function show($id)
+    {
+        return $this->success('success', $this->{{ variableName }}Service->get{{ useName }}ById($id));
+    }
+
+    public function update({{ useName }}Request $request, $id)
+    {
+        ${{ variableName }} = $request->only([
+
+        ]);
+
+        try {
+            $this->{{ variableName }}Service->update{{ useName }}(${{ variableName }}, $id);
+
+            return $this->success('更新成功');
+
+        } catch (\Exception $exception) {
+
+            return $this->error($exception->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $this->{{ variableName }}Service->delete{{ useName }}($id);
+
+            return $this->success('删除成功');
+
+        } catch (\Exception $exception) {
+
+            return $this->error($exception->getMessage());
+        }
+    }
+}

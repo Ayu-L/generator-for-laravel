@@ -1,0 +1,59 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Models\{{ useName }} as {{ useName }}Model;
+
+class {{ class }}
+{
+    public function get{{ useName }}UsingSearch($search, $pageSize = '')
+    {
+        ${{ variableName }}Query = {{ useName }}Model::search($search);
+
+        if (! empty($pageSize)) {
+
+            ${{ variableName }} = ${{ variableName }}Query->paginate($pageSize);
+
+        } else {
+
+            ${{ variableName }} = ${{ variableName }}Query->get();
+        }
+        return ${{ variableName }};
+    }
+
+    public function create{{ useName }}(${{ variableName }}Data)
+    {
+        ${{ variableName }} = new {{ useName }}Model();
+
+        ${{ variableName }}->save();
+    }
+
+    public function get{{ useName }}ById($id)
+    {
+        return {{ useName }}Model::findOrFail($id);
+    }
+
+    public function update{{ useName }}(${{ variableName }}Data, $id)
+    {
+        ${{ variableName }} = $this->get{{ useName }}ById($id);
+
+        ${{ variableName }}->save();
+    }
+
+    public function delete{{ useName }}($id)
+    {
+        ${{ variableName }} = $this->get{{ useName }}ById($id);
+
+        ${{ variableName }}->delete();
+    }
+
+    public function array_get(array $input, string $key, $value = null)
+    {
+        if (isset($input[$key])) {
+
+            return $input[$key];
+        }
+
+        return $value;
+    }
+}
