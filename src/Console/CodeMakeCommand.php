@@ -84,9 +84,9 @@ class CodeMakeCommand extends GeneratorCommand
         if (! $this->files->exists($path)) {
 
             $this->createFile($name, $path);
-        }
 
-        $this->info($this->typeName.' created successfully.');
+            $this->info($this->typeName.' created successfully.');
+        }
     }
 
     public function createBaseModel()
@@ -102,9 +102,9 @@ class CodeMakeCommand extends GeneratorCommand
         if (! $this->files->exists($path)) {
 
             $this->createFile($name, $path);
-        }
 
-        $this->info($this->typeName.' created successfully.');
+            $this->info($this->typeName.' created successfully.');
+        }
     }
 
     protected function createModel()
