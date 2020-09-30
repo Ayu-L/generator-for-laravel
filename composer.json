@@ -3,14 +3,27 @@
     "description": "ayu使用的代码生成器",
     "authors": [
         {
-            "name": "林玄宇",
+            "name": "ayu",
             "email": "190971772@qq.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^7",
+        "laravel/framework": "^7"
+    },
+    "require-dev": {
+
+    },
     "autoload": {
         "psr-4": {
             "Ayu\\Generator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ayu\\Generator\\GeneratorServiceProvider"
+            ]
         }
     }
 }

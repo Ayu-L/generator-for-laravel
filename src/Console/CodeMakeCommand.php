@@ -35,29 +35,34 @@ class CodeMakeCommand extends GeneratorCommand
         $this->setFinishName();
         $this->variableName = $this->argument('name');
 
-        if ($this->option('type') == null || $this->option('type') == 'all') {
-            $this->createModel();
-            $this->createRequest();
-            $this->createController();
-            $this->createService();
-        }
+        switch ($this->option('type')) {
+            case null:
+            case 'all':
+                $this->createBaseModel();
+                $this->createModel();
+                $this->createValidatorRequest();
+                $this->createRequest();
+                $this->createController();
+                $this->createService();
+                break;
+            case 'model':
+                $this->createBaseModel();
+                $this->createModel();
+                break;
+            case 'request':
+                $this->createValidatorRequest();
+                $this->createRequest();
+                break;
+            case 'service':
+                $this->createService();
+                break;
+            case 'controller':
+                $this->createController();
+                break;
 
-        if ($this->option('type') == 'model') {
-            $this->createBaseModel();
-            $this->createModel();
-        }
-
-        if ($this->option('type') == 'request') {
-            $this->createValidatorRequest();
-            $this->createRequest();
-        }
-
-        if ($this->option('type') == 'service') {
-            $this->createService();
-        }
-
-        if ($this->option('type') == 'controller') {
-            $this->createController();
+            default:
+                $this->error('Error Error!!');
+                break;
         }
     }
 
@@ -80,6 +85,8 @@ class CodeMakeCommand extends GeneratorCommand
 
             $this->createFile($name, $path);
         }
+
+        $this->info($this->typeName.' created successfully.');
     }
 
     public function createBaseModel()
@@ -97,6 +104,7 @@ class CodeMakeCommand extends GeneratorCommand
             $this->createFile($name, $path);
         }
 
+        $this->info($this->typeName.' created successfully.');
     }
 
     protected function createModel()
