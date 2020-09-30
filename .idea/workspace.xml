@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5cf7b34a-02ce-444f-a791-ac1603a7de57" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Console/CodeMakeCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/CodeMakeCommand.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +44,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601448051118</updated>
-      <workItem from="1601448052195" duration="4099000" />
+      <workItem from="1601448052195" duration="4292000" />
     </task>
     <servers />
   </component>
@@ -50,9 +52,9 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="501" y="215" key="FileChooserDialogImpl" timestamp="1601448224715">
+    <state x="501" y="215" key="FileChooserDialogImpl" timestamp="1601452977430">
       <screen x="0" y="0" width="1440" height="920" />
     </state>
-    <state x="501" y="215" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1601448224715" />
+    <state x="501" y="215" key="FileChooserDialogImpl/0.0.1440.920@0.0.1440.920" timestamp="1601452977430" />
   </component>
 </project>

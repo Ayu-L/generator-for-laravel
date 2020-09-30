@@ -79,14 +79,7 @@ class CodeMakeCommand extends GeneratorCommand
 
         $name = $this->qualifyClass('Validator') . 'Request';
 
-        $path = $this->getPath($name);
-
-        if (! $this->files->exists($path)) {
-
-            $this->createFile($name, $path);
-
-            $this->info($this->typeName.' created successfully.');
-        }
+        $this->createFile($name);
     }
 
     public function createBaseModel()
@@ -97,14 +90,7 @@ class CodeMakeCommand extends GeneratorCommand
 
         $name = $this->qualifyClass('Model');
 
-        $path = $this->getPath($name);
-
-        if (! $this->files->exists($path)) {
-
-            $this->createFile($name, $path);
-
-            $this->info($this->typeName.' created successfully.');
-        }
+        $this->createFile($name);
     }
 
     protected function createModel()
@@ -117,8 +103,6 @@ class CodeMakeCommand extends GeneratorCommand
 
         // 获取地址
         $this->createFile($name);
-
-        $this->info($this->typeName.' created successfully.');
     }
 
     protected function createRequest()
@@ -131,8 +115,6 @@ class CodeMakeCommand extends GeneratorCommand
 
         // 获取地址
         $this->createFile($name);
-
-        $this->info($this->typeName.' created successfully.');
     }
 
     protected function createService()
@@ -145,9 +127,6 @@ class CodeMakeCommand extends GeneratorCommand
 
         // 获取地址
         $this->createFile($name);
-
-        $this->info($this->typeName.' created successfully.');
-
     }
 
     protected function createController()
@@ -160,23 +139,23 @@ class CodeMakeCommand extends GeneratorCommand
 
         // 获取地址
         $this->createFile($name);
-
-        $this->info($this->typeName.' created successfully.');
     }
 
-    protected function createFile($namespace, $path = null)
+    protected function createFile($namespace)
     {
-        // 获取地址
-        if ($path === null) {
-            $path = $this->getPath($namespace);
+        $path = $this->getPath($namespace);
+
+        if (! $this->files->exists($path)) {
+            // 按照地址生成文件夹
+            $this->makeDirectory($path);
+            // 生成文件
+            $stub = $this->buildUseName($this->buildVariableName($this->buildClass($namespace)));
+
+            $this->files->put($path, $this->sortImports($stub));
+
+            $this->info($this->typeName.' created successfully.');
         }
 
-        // 按照地址生成文件夹
-        $this->makeDirectory($path);
-        // 生成文件
-        $stub = $this->buildUseName($this->buildVariableName($this->buildClass($namespace)));
-
-        $this->files->put($path, $this->sortImports($stub));
     }
 
     protected function buildVariableName($stub)
