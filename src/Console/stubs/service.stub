@@ -56,4 +56,9 @@ class {{ class }}
 
         return $value;
     }
+
+    public function getConfig()
+    {
+        return (new {{ useName }}Model())->getConfig();
+    }
 }

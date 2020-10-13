@@ -5,12 +5,19 @@ namespace {{ namespace }};
 
 class {{ class }} extends Model
 {
+    private $config = [];
+
     public function scopeSearch($query, $search)
     {
         if (isset($search['order_key']) && ! empty($search['order_key'])) {
             $query->orderBy($search['order_key'], 'desc');
         }
         return $query;
+    }
+
+    public function getConfig()
+    {
+        return $this->config;
     }
 
     //
